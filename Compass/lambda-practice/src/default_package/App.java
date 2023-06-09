@@ -1,3 +1,5 @@
+package default_package;
+
 public class App {
     public static void main(String[] args) {
 
@@ -7,7 +9,7 @@ public class App {
         Robot wale = new Robot();
         //walker(wale);
 
-        //walker(new Walkable() {
+        //walker(new default_package.Walkable() {
             //@Override
             //public void walk() {
                 //System.out.println("Custom object walking... ");
