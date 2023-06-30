@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.awt.desktop.SystemSleepEvent;
 import java.util.List;
 
 @SpringBootApplication
@@ -29,8 +30,17 @@ public class CruddemoApplication {
 
 //			queryForStudentsByLastName(studentDAO);
 
-			updateStudent(studentDAO);
+//			updateStudent(studentDAO);
+
+			deleteStudent(studentDAO);
 		};
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+
+		int studentId = 3;
+		System.out.println("Getting student with id: " + studentId);
+		studentDAO.delete(studentId);
 	}
 
 	private void updateStudent(StudentDAO studentDAO) {
