@@ -2,10 +2,9 @@ package br.com.compass.demo.rest;
 
 import br.com.compass.demo.entity.Student;
 import jakarta.annotation.PostConstruct;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +38,27 @@ public class StudentRestController {
     public Student getStudent(@PathVariable int studentId) {
 
         // just index into the list... keep it simple for now
+
+        // check the studentId again list size
+        if((studentId >= theStudents.size()) || (studentId <= 0)) {
+            throw new StudentNotFoundException("Student id not found - " + studentId);
+        }
+
         return theStudents.get(studentId-1); // sem o -1 ele busca pelo index, e colocando -1 fica como se fosse uma busca por id mesmo
+    }
+
+    // Add an exception handler using @ExceptionHandler
+    @ExceptionHandler
+    public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException exc) {
+
+        // create a StudentErrorResponse
+        StudentErrorResponse error = new StudentErrorResponse();
+
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+        error.setMessage(exc.getMessage());
+        error.setTimeStamp(System.currentTimeMillis());
+
+        // return ResponseEntity
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 }
