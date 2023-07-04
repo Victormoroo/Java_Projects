@@ -1,6 +1,5 @@
 package br.com.compass.cruddemo.rest;
 
-import br.com.compass.cruddemo.dao.EmployeeDAO;
 import br.com.compass.cruddemo.entity.Employee;
 import br.com.compass.cruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
