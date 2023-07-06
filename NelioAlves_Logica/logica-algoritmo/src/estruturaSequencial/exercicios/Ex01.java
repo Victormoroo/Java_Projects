@@ -18,5 +18,7 @@ public class Ex01 {
 
         System.out.printf("ÁREA = %.2f%n", area);
         System.out.printf("PREÇO = %.2f", valorM * area);
+
+        sc.close();
     }
 }
